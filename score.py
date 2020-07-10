@@ -149,9 +149,15 @@ def build():
         if "WORD" not in x:
             cluster = re.split(r"a|ą|o", x[0])
             if isinstance(key[cluster[0]], list):
-                avgs[key[cluster[0]][0]] = x[5]
+                if key[cluster[0]][0] in avgs:
+                    avgs[key[cluster[0]][0]] += float(x[5])
+                else:
+                    avgs[key[cluster[0]][0]] = float(x[5])
             else:
-                avgs[key[cluster[0]]] =  x[5]
+                if key[cluster[0]] in avgs:
+                    avgs[key[cluster[0]]] +=  float(x[5])
+                else:
+                    avgs[key[cluster[0]]] =  float(x[5])
         
     #Compile score files
     score = open("main_score.csv", "w+")
@@ -177,7 +183,7 @@ def build():
                 neg.write("," + str(i))
             
             if temp[0] in avgs:        
-                score.write("," + str(son_total) + "," + avgs[temp[0]] + "\n")
+                score.write("," + str(son_total) + "," + str(avgs[temp[0]]/3) + "\n")
             else:
                 print(temp[0])
                 score.write("," + str(son_total) + ",--\n")
