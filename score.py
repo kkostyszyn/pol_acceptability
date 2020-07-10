@@ -27,25 +27,24 @@ def subfactor(cluster, all_clusters):
             
         x_loc += 1
     
-"""
-def build(cluster, vectors, neg_vectors, f_vectors, f_negatives):
-#A function that, given a cluster, two dictionaries, and two files, writes all of the dictionaries to file
-#for minimally re-writing later on 
+def decode():
+    k = open("key.csv")
+    key = {}
     
-    for c in cluster:
-        #First, write to f_vectors each sonority vector 
+    for line in k:
+        x = re.split(",|\n", line)
+        #here is where the problem is occuring = key[cz] is writing as both [tS] and [ts]z 
         
-        f_vectors.write(c + ",")
-        for x in vectors[c]:
-            f_vectors.write(x + ",")
-        f_vectors.write("\n")
-        
-        f_negatives.write(c + ",")
-        for x in neg_vectors[c]:
-            f_negatives.write(x + ",")
-        f_negatives.write("\n")
-    return True
-"""
+        if x[1] in key:
+            if isinstance(key[x[1]], list):
+                key[x[1]].append(x[0])
+            else: 
+                key[x[1]] = [key[x[1]]]
+        else:
+            key[x[1]] = x[0]
+
+    
+    return key
 
 def score_vector(cluster):
 
@@ -137,10 +136,28 @@ def score_vector(cluster):
     return (score_vector, neg_vector)
     
 def build():
+    
+    #Re-translate nonse words into clusters to determine acceptability averages 
+    key = decode()
+    
     k = open("pol.csv")
+    a = open("acceptability_master.csv")
+    avgs = {}
+    
+    for line in a:
+        x = re.split(r",|\n", line)
+        if "WORD" not in x:
+            cluster = re.split(r"a|ą|o", x[0])
+            if isinstance(key[cluster[0]], list):
+                avgs[key[cluster[0]][0]] = x[5]
+            else:
+                avgs[key[cluster[0]]] =  x[5]
+        
+    #Compile score files
     score = open("main_score.csv", "w+")
     shifts = open("sonority.csv", "w+")
     neg = open("sonority_neg.csv", "w+")
+    
     for x in k:
         temp = re.split(r",|\n", x) 
         if "CLUSTER" not in temp and temp[0] != '' :
@@ -158,8 +175,12 @@ def build():
                 son_total += i
             for i in vec[1]:
                 neg.write("," + str(i))
-                
-            score.write("," + str(son_total) + "\n")
+            
+            if temp[0] in avgs:        
+                score.write("," + str(son_total) + "," + avgs[temp[0]] + "\n")
+            else:
+                print(temp[0])
+                score.write("," + str(son_total) + ",--\n")
             shifts.write("\n")
             neg.write("\n")
         
@@ -167,5 +188,6 @@ def build():
     shifts.close()
     neg.close()
 
+build()
 #score: any sonority fall automatically makes the score negative
 #score: any sonority fall increases the score by an exponent 
