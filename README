@@ -1,0 +1,14 @@
+TO GENERATE A NEW DATA SET
+%load gen_accept.py, then run randomize(generate(back)
+
+TO GENERATE STATS FOR REGRESSIONS
+%load score.py, then build() for base stats
+
+IN MAIN_SCORE.CSV
+File is organized cluster, frequency (5gram referenced), and length
+
+IN SONORITY.CSV
+File is organized cluster, then a list of indeterminate length for sonority shifts
+
+IN SONORITY_NEG.CSV
+File is organized cluster, then a list of indeterminate length that measures if the sonority shift is increasing or decreasing in sonority.

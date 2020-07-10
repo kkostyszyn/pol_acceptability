@@ -113,5 +113,10 @@ for c in clusters:
     k.write(c + "," + a + "\n")
     a = ''
     
+k.close()
+for x in k:
+    temp = re.split(r",|\n", x)
+    print(temp)
+    
 #generate(back) to create list of all 
 #randomize(generate(back)) to randomize and save to file
