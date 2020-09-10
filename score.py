@@ -287,7 +287,7 @@ def build():
             
             if temp[0] in avgs:
                 #[tS] is doubling the acceptability because of the confusion between 'cz' as a cluster and as an affricate. So, we halve it.
-                if temp[0] == '[tʃ]':
+                if temp[0] == '[tʃ]' or temp[0] == '[dʒ]':
                     score.write("," + str(son_total) + "," + str((avgs[temp[0]]/3)/2) + "\n")
                 else:
                     score.write("," + str(son_total) + "," + str(avgs[temp[0]]/3) + "\n")
