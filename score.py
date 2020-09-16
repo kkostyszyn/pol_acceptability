@@ -260,13 +260,14 @@ def build():
     shifts = open("sonority.csv", "w+")
     neg = open("sonority_neg.csv", "w+")
     
-    score.write("CLUSTER, FREQUENCY, SONORITY, LENGTH, ACCEPTABILITY\n")
+    score.write("CLUSTER, FREQUENCY, LENGTH, SONORITY, ACCEPTABILITY\n")
     
     for x in k:
         temp = re.split(r",|\n", x) 
-        if "CLUSTER" not in temp and temp[0] != '' :
+        if "CLUSTER" not in temp and temp[0] != '' and temp[0] != "[ts]z" and temp[0] != "dʒ" :
             #score.write(temp[0] + "," + temp[1] + ",")
-            score.write(temp[0] + ",")
+            #write cluster + frequency (5-gram)
+            score.write(temp[0] + "," + temp[1] + ",")
             shifts.write(temp[0])
             neg.write(temp[0])
             
@@ -274,7 +275,8 @@ def build():
             vec = score_vector(x)
             s = s_score(vec[0], vec[1])
             
-            score.write(str(s) + ",")
+            #write sonority (measure 1) + length
+            #score.write(str(s) + ",")
             score.write(str(len(vec[0])))
             
             #SON_TOTAL is a score measure totalling all of the sonority shifts, without negative values
