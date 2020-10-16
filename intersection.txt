@@ -1,4 +1,3 @@
-
 b
 bl
 br
@@ -8,6 +7,7 @@ bʒ
 d
 db
 dm
+dn
 dr
 drg
 drv
@@ -28,6 +28,7 @@ g
 gd
 gl
 gm
+gn
 gr
 gv
 gw
@@ -41,6 +42,7 @@ j
 jm
 k
 kl
+kn
 kr
 krt
 krv
@@ -54,7 +56,9 @@ kʃ
 kʃt
 kʒ
 l
+lgn
 lgɲ
+ln
 lv
 lɕɲ
 lɲ
@@ -62,8 +66,10 @@ lʒ
 m
 mgl
 mgw
+mkn
 mkɲ
 ml
+mn
 mr
 mw
 mx
@@ -71,8 +77,10 @@ mɟ
 mɲ
 mʃ
 mʒ
+n
 p
 pl
+pn
 pr
 ps
 pstr
@@ -99,6 +107,7 @@ skʒ
 sl
 sm
 smr
+sn
 sp
 spl
 spr
@@ -115,6 +124,7 @@ sv
 sw
 sx
 sxl
+sxn
 sxr
 sxɲ
 t
@@ -124,8 +134,8 @@ tm
 tp
 tr
 trv
-ts
 tsm
+tsn
 tv
 tw
 tx
@@ -139,6 +149,7 @@ vdʑ
 vj
 vk
 vkr
+vn
 vp
 vpw
 vr
@@ -191,6 +202,7 @@ zj
 zl
 zm
 zmr
+zn
 zr
 zv
 zvr
@@ -215,6 +227,7 @@ zʒ
 ʃkw
 ʃl
 ʃm
+ʃn
 ʃp
 ʃpr
 ʃpʒ
