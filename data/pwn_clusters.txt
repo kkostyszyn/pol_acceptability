@@ -1,4 +1,4 @@
-WORD
+WORD,1
 płc
 tf
 ww

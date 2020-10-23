@@ -7,7 +7,7 @@ dm
 dn
 dr
 drg
-dv
+dv,1
 dzb
 f
 fl
@@ -19,7 +19,7 @@ gl
 gm
 gn
 gr
-gv
+gv,1
 gz
 j
 jm
@@ -30,7 +30,7 @@ kr
 krt
 ks
 kt
-kv
+kv,1
 l
 lgn
 ln
@@ -68,8 +68,8 @@ ss
 st
 str
 sts
-stv
-sv
+stv,1
+sv,1
 t
 tk
 tl
@@ -78,9 +78,9 @@ tp
 tr
 tsm
 tsn
-tv
-v
-vz
+tv,1
+v,1
+vz,1
 z
 zb
 zbl
@@ -97,4 +97,4 @@ zm
 zmr
 zn
 zr
-zv
+zv,1
