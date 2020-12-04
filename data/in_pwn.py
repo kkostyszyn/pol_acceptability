@@ -6,9 +6,11 @@ def bigrams(pwn, lex):
     for c in lex:
         c = re.sub(r"\n", r"", c)
         c = re.sub(r",1", r"", c)
-        print(c)
+        #print(c)
         if c in pwn:
             temp.append(c)
+        else:
+            print(c)
             
         t = re.sub(r"#", r"", c)
         if t in pwn and c not in temp:
