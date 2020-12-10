@@ -56,11 +56,17 @@ def write_found(found, where):
         #for n in found[i]:
         #    f.write("," + str(n))
         f.write(i +"," + str(avg) + "\n")
+        
+    f.close()
 
 #------------------------------------------
 
 if __name__ == "__main__":
-
+    
+    #score - ortho : number
+    #speaker_clusters - IPA : ortho
+    #reverse_key - ortho:IPA
+    #speaker_bigrams - IPA: list of bigrams
     
     #open acceptability master list, compile scores for clusters
     g = open("acceptability_master_PWN.csv", "r").readlines()
@@ -87,6 +93,7 @@ if __name__ == "__main__":
     for x in speaker_clusters.keys():
         #key = IPA cluster, value = list of present bigrams 
         speaker_bigrams[x] = to_bigrams(x)
+    
             
     #Open pwn, get bigrams
     f = open("data/pwn_clusters.txt", "r").readlines()
@@ -103,6 +110,7 @@ if __name__ == "__main__":
     ####################
     #in_pwn = open("data/speaker_in_pwn.txt", "w")
     #not_pwn = open("data/speaker_not_pwn.txt", "w")
+    
     found_in = {}
     found_out= {}
     for x in speaker_bigrams: #cluster
@@ -122,9 +130,32 @@ if __name__ == "__main__":
                     found_out[bi].append(score[speaker_clusters[x]])
                 else:
                     found_out[bi] = [score[speaker_clusters[x]]]
-
+                    
     write_found(found_in, "in")
     write_found(found_out, "out")
+    
+    ######################################################
+    # write clusters & infractions & acceptability score #
+    ######################################################
+    
+    ill = open("data/illegal_clusters.csv", "w")
+    
+    # per cluster
+    for x in speaker_clusters.keys():
+        #check if bigrams are in PWN
+        lst = to_bigrams(x)
+        for y in lst:
+            if y  in pwn_bigrams:
+                lst.remove(y)
+
+
+        txt = x + "," + str(len(lst)) + "," + str(score[speaker_clusters[x]]) + "\n"
+        print(txt, end="")
+        ill.write(txt)
+    
+    
+    #-----------------------
+
 
     
             
