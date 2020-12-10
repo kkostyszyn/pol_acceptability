@@ -139,7 +139,7 @@ if __name__ == "__main__":
     ######################################################
     
     ill = open("data/illegal_clusters.csv", "w")
-    
+    ill.write("CLUSTER, ILLEGAL, ACCEPT\n")
     # per cluster
     for x in speaker_clusters.keys():
         #check if bigrams are in PWN
