@@ -141,16 +141,29 @@ if __name__ == "__main__":
     ill = open("data/illegal_clusters.csv", "w")
     ill.write("CLUSTER, ILLEGAL, ACCEPT\n")
     # per cluster
+    write_dict = {}
+    
     for x in speaker_clusters.keys():
         #check if bigrams are in PWN
         lst = to_bigrams(x)
         for y in lst:
-            if y  in pwn_bigrams:
+            #print(lst)
+
+            """
+            if y in pwn_bigrams:
                 lst.remove(y)
+                print(lst, y, y in pwn_bigrams)
+            """
+            if y not in pwn_bigrams:
+                if x in write_dict: write_dict[x].append(y)
+                else: write_dict[x] = [y]
 
-
-        txt = x + "," + str(len(lst)) + "," + str(score[speaker_clusters[x]]) + "\n"
-        print(txt, end="")
+        
+        if x in write_dict:
+            txt = x + "," + str(len(write_dict[x])) + "," + str(score[speaker_clusters[x]]) + "\n"
+        else:
+            txt = x + ",0," + str(score[speaker_clusters[x]]) + "\n"
+        #print(txt, end="")
         ill.write(txt)
     
     
